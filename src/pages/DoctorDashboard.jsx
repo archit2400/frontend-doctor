@@ -8,7 +8,7 @@ function DoctorDashboard() {
 
   const token = localStorage.getItem("token");
 
-  // Fetch appointments
+
   useEffect(() => {
     API.get("/appointments", {
       headers: { Authorization: `Bearer ${token}` }
@@ -18,7 +18,7 @@ function DoctorDashboard() {
       .finally(() => setLoading(false));
   }, []);
 
-  // Update status
+  
   const updateStatus = async (id, status) => {
     try {
       const res = await API.put(
@@ -27,7 +27,7 @@ function DoctorDashboard() {
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
-      // Update UI with backend response
+      
       setAppointments(prev =>
         prev.map(a => (a._id === id ? res.data : a))
       );
